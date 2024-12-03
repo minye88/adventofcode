@@ -3,12 +3,13 @@
 #include <string>
 #include <vector>
 
+/*
+    Insert a value into the list in the correct position (like in insertion sort).
+*/
 void insertValue(int value, std::vector<int>& vec) {
     
     size_t size = vec.size();
-
     //std::cout << "size: " << size << '\n';
-
 
     if (size == 0) {
         vec.push_back(value);
@@ -27,11 +28,17 @@ void insertValue(int value, std::vector<int>& vec) {
     vec.insert(vec.end(), value);
 }
 
+/*
+    For debugging.
+*/
 void printVec(std::vector<int>& vec) {
     for (int x : vec)
         std::cout << x << "\n";
 }
 
+/*
+    Calculate the difference between values of the same index in each list.
+*/
 int calculateDiff(std::vector<int>& left, std::vector<int>& right) {
     size_t size = left.size();
     size_t sizeRight = right.size();
@@ -42,8 +49,6 @@ int calculateDiff(std::vector<int>& left, std::vector<int>& right) {
     for (size_t i = 0; i < size; ++i) {
         int currentDiff = std::abs(left[i] - right[i]);
         std::cout << "[" << i << "] " << left[i] << " - " << right[i] << " = " << currentDiff << "\n";
-
-
         totalDiff += std::abs(left[i] - right[i]);
     }
     return totalDiff;
