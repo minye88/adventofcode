@@ -41,17 +41,41 @@ void printVec(std::vector<int>& vec) {
 */
 int calculateDiff(std::vector<int>& left, std::vector<int>& right) {
     size_t size = left.size();
-    size_t sizeRight = right.size();
+    //size_t sizeRight = right.size();
 
     //std::cout << "sizeLeft: " << size << "\tsizeRight: " << sizeRight << "\n";
 
     int totalDiff = 0;
     for (size_t i = 0; i < size; ++i) {
-        int currentDiff = std::abs(left[i] - right[i]);
-        std::cout << "[" << i << "] " << left[i] << " - " << right[i] << " = " << currentDiff << "\n";
+        //int currentDiff = std::abs(left[i] - right[i]);
+        //std::cout << "[" << i << "] " << left[i] << " - " << right[i] << " = " << currentDiff << "\n";
         totalDiff += std::abs(left[i] - right[i]);
     }
     return totalDiff;
+}
+
+/*
+    Calculate the similarity score between two lists by adding up each number in the left list 
+    after multiplying it by the number of times that number appears in the right list.
+
+*/
+int calculateSimilarityScore(std::vector<int>& left, std::vector<int>& right) {
+    size_t size = left.size();
+    int similarityScore = 0;
+    for (size_t i = 0; i < size; ++i) {
+        
+        int repeats = 0;
+        int leftValue = left[i];
+        
+        for (size_t j = 0; j < size; ++j) {
+            if (right[j] == leftValue)
+                ++repeats;
+        }
+
+        similarityScore += (leftValue * repeats);
+    }
+
+    return similarityScore;
 }
 
 int main(int argc, char * argv[])
@@ -89,8 +113,10 @@ int main(int argc, char * argv[])
     //printVec(right);
 
     int totalDiff = calculateDiff(left, right);
-
     std::cout << "Total distance between lists: " << totalDiff << "\n";
+
+    int similarityScore = calculateSimilarityScore(left, right);
+    std::cout << "Similarity score: " << similarityScore << "\n";
 
     return 0;
 }

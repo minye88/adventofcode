@@ -1,4 +1,4 @@
 #!/bin/bash
 
-g++ -Wall Day1.cpp
+g++ -Wall Day2.cpp
 ./a.out
